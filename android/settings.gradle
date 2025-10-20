@@ -1,5 +1,44 @@
-pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+pluginManagement {
+    includeBuild("../node_modules/@react-native/gradle-plugin")
+
+    repositories {
+        maven {
+            // all local repositories, including react-native
+            url "$rootDir/repository"
+        }
+        maven { url "$rootDir/../node_modules/jsc-android/dist"}
+        maven { url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/public'}
+        maven { url 'https://maven.aliyun.com/repository/central'}
+        maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/'}
+        gradlePluginPortal()
+    }
+}
+
 plugins { id("com.facebook.react.settings") }
+
+dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/public'}
+        maven { url 'https://maven.aliyun.com/repository/central'}
+        maven { url 'https://maven.aliyun.com/repository/jcenter'}
+
+        maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        google()
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
 extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
 rootProject.name = 'AwesomeProject'
 include ':app'
