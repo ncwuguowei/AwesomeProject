@@ -31,6 +31,13 @@ import Counter, { useCounterStore } from './src/components/Counter';
 import LoginScreen from './src/screens/LoginScreen';
 import { SCREEN_HOME, SCREEN_LOGIN } from './src/screens/ScreenConst';
 import HomeScreen from './src/screens/HomeScreen';
+import LoginScreenRedux from './src/screens/redux/LoginScreenRedux';
+import HomeScreenRedux from './src/screens/redux/HomeScreenRedux';
+import { Provider } from 'react-redux';
+import { userStore } from './src/store/redux/userSlice';
+
+// store use Redux-ToolKit
+const useRedux: boolean = false;
 
 const Stack = createNativeStackNavigator();
 
@@ -74,14 +81,36 @@ function App(): React.JSX.Element {
 
   const { reset: resetCounter } = useCounterStore()
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name={SCREEN_LOGIN} component={LoginScreen} />
-        <Stack.Screen name={SCREEN_HOME} component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  // return (
+  //   <NavigationContainer>
+  //     <Stack.Navigator>
+  //       {/* <Stack.Screen name={SCREEN_LOGIN} component={LoginScreen} />
+  //       <Stack.Screen name={SCREEN_HOME} component={HomeScreen} /> */}
+  //     </Stack.Navigator>
+  //   </NavigationContainer>
+  // );
+
+  if (useRedux) {
+    return (
+      <Provider store={userStore}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name={SCREEN_LOGIN} component={LoginScreenRedux} />
+            <Stack.Screen name={SCREEN_HOME} component={HomeScreenRedux} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    );
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name={SCREEN_LOGIN} component={LoginScreen} />
+          <Stack.Screen name={SCREEN_HOME} component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
 }
 
 const styles = StyleSheet.create({

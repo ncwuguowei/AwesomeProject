@@ -20,14 +20,15 @@ export default function LoginScreen({ navigation }: any) {
             await login(userName, password);
             setLoading(false);
             console.debug(`LoginScreenhandleLogin handleLogin success`);
-            // navigation.dispatch(
-            //     CommonActions.reset({
-            //         index: 0,
-            //         routes: [{ name: SCREEN_HOME }],
-            //     })
-            // );
+            // use navigation.reset to clear stacks
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: SCREEN_HOME }],
+                })
+            );
             // navigation.navigate(SCREEN_HOME);
-            navigation.replace(SCREEN_HOME);
+            // navigation.replace(SCREEN_HOME);
         } catch(error) {
             // console.error('LoginScreen', `handleLogin error ${JSON.stringify(error)}`);
             console.debug(`LoginScreenhandleLogin error ${JSON.stringify(error)}`);
