@@ -27,14 +27,15 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Counter, { useCounterStore } from './src/components/Counter';
+import Counter, { useCounterStore } from './src/components/Counter/Counter';
 import LoginScreen from './src/screens/LoginScreen';
-import { SCREEN_HOME, SCREEN_LOGIN } from './src/screens/ScreenConst';
+import { SCREEN_DEVICES, SCREEN_HOME, SCREEN_LOGIN } from './src/screens/ScreenConst';
 import HomeScreen from './src/screens/HomeScreen';
 import LoginScreenRedux from './src/screens/redux/LoginScreenRedux';
 import HomeScreenRedux from './src/screens/redux/HomeScreenRedux';
 import { Provider } from 'react-redux';
 import { userStore } from './src/store/redux/userSlice';
+import DeviceListScreen from './src/screens/DeviceListScreen';
 
 // store use Redux-ToolKit
 const useRedux: boolean = false;
@@ -107,6 +108,7 @@ function App(): React.JSX.Element {
         <Stack.Navigator>
           <Stack.Screen name={SCREEN_LOGIN} component={LoginScreen} />
           <Stack.Screen name={SCREEN_HOME} component={HomeScreen} />
+          <Stack.Screen name={SCREEN_DEVICES} component={DeviceListScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     )

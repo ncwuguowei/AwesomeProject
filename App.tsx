@@ -25,7 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Counter, { useCounterStore } from './src/components/Counter';
+import Counter, { useCounterStore } from './src/components/Counter/Counter';
 
 type SectionProps = PropsWithChildren<{
   title: string;
